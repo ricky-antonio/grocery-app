@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 //Components
 import GroceryApp from './GroceryApp';
 import GroceryList from './GroceryList';
+import GroceryForm from './GroceryForm';
 //Material UI
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
@@ -18,6 +19,10 @@ function App() {
 	]
 
 	const [items, setItems] = useState(initialItems);
+	const addItem = newItemText => {
+		setItems([...items, {id: items.length + 1, item: newItemText, completed: false, quantity: 1}]);
+	}
+
 	return (
 		<Paper
 			style={{
@@ -33,6 +38,7 @@ function App() {
 					<Typography color='inherit'>Grocery List</Typography>
 				</Toolbar>
 			</AppBar>
+			<GroceryForm addItem={addItem} />
 			<GroceryList  items={items} />
 		</Paper>
 	);
