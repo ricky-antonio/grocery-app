@@ -9,14 +9,14 @@ import EditIcon from '@material-ui/icons/Edit';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 
-function Item({ item, completed, id }) {
+function Item({ item, completed, id, removeItem, toggleItem }) {
     return (
         <>
             <ListItem>
-                <CheckBox tabIndex={-1} checked={completed} />
+                <CheckBox tabIndex={-1} checked={completed} onClick={() => toggleItem(id)} />
                 <ListItemText style={{textDecoration: completed ? 'line-through': 'none'}} >{item}</ListItemText>
                 <ListItemSecondaryAction>
-                    <IconButton aria-label='delete'>
+                    <IconButton aria-label='delete' onClick={() => removeItem(id)}>
                         <DeleteIcon />
                     </IconButton>
                     <IconButton aria-label='edit'>

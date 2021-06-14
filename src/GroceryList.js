@@ -10,13 +10,20 @@ import Divider from '@material-ui/core/Divider';
 
 
 
-function GroceryList(props) {
+function GroceryList({ items, removeItem, toggleItem }) {
     return (
         <Paper>
             <List>
-                {props.items.map(item => (
+                {items.map(item => (
                     <>
-                        <Item item={item.item} key={item.id} completed={item.completed} />
+                        <Item
+                            item={item.item}
+                            id={item.id}
+                            key={item.id}
+                            completed={item.completed}
+                            removeItem={removeItem}
+                            toggleItem={toggleItem}
+                        />
                         <Divider />
                     </>
                 ))}
