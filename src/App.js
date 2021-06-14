@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 //Components
 import GroceryApp from './GroceryApp';
 import GroceryList from './GroceryList';
@@ -13,14 +13,14 @@ import Grid from '@material-ui/core/Grid';
 
 function App() {
 	const initialItems = [
-		{id: 1, item: 'milk', completed: false, quantity: 1},
-		{id: 2, item: 'bread', completed: true, quantity: 1},
-		{id: 3, item: 'bananas', completed: false, quantity: 6}
+		{ id: 1, item: 'milk', completed: false, quantity: 1 },
+		{ id: 2, item: 'bread', completed: true, quantity: 1 },
+		{ id: 3, item: 'bananas', completed: false, quantity: 6 }
 	]
 
 	const [items, setItems] = useState(initialItems);
 	const addItem = newItemText => {
-		setItems([...items, {id: items.length + 1, item: newItemText, completed: false, quantity: 1}]);
+		setItems([...items, { id: items.length + 1, item: newItemText, completed: false, quantity: 1 }]);
 	}
 
 	return (
@@ -33,13 +33,17 @@ function App() {
 			}}
 			elevation={0}
 		>
-			<AppBar color='primary' position='static' style={{height: '64px'}}>
+			<AppBar color='primary' position='static' style={{ height: '64px' }}>
 				<Toolbar>
 					<Typography color='inherit'>Grocery List</Typography>
 				</Toolbar>
 			</AppBar>
-			<GroceryForm addItem={addItem} />
-			<GroceryList  items={items} />
+			<Grid container justify='center' style={{marginTop: '1rem'}}>
+				<Grid item xs={11} md={8} lg={4} >
+				<GroceryForm addItem={addItem} />
+				<GroceryList items={items} />
+				</Grid>
+			</Grid>
 		</Paper>
 	);
 }
