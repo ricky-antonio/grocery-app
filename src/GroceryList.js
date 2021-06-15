@@ -10,7 +10,7 @@ import Divider from '@material-ui/core/Divider';
 
 
 
-function GroceryList({ items, removeItem, toggleItem }) {
+function GroceryList({ items, removeItem, toggleItem, editItem }) {
     return (
         <Paper>
             <List>
@@ -23,6 +23,7 @@ function GroceryList({ items, removeItem, toggleItem }) {
                             completed={item.completed}
                             removeItem={removeItem}
                             toggleItem={toggleItem}
+                            editItem={editItem}
                         />
                         <Divider />
                     </>

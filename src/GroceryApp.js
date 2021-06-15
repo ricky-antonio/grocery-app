@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 //Components
 import GroceryList from './GroceryList';
@@ -12,8 +12,8 @@ import Grid from '@material-ui/core/Grid';
 
 import uuid from 'uuid/dist/v4';
 
-function GroceryApp(){
-    const initialItems = [
+function GroceryApp() {
+	const initialItems = [
 		{ id: uuid(), item: 'milk', completed: false, quantity: 1 },
 		{ id: uuid(), item: 'bread', completed: true, quantity: 1 },
 		{ id: uuid(), item: 'bananas', completed: false, quantity: 6 }
@@ -25,17 +25,24 @@ function GroceryApp(){
 		setItems([...items, { id: uuid(), item: newItemText, completed: false, quantity: 1 }]);
 	};
 
-    const removeItem = itemId => {
-        const updatedItems = items.filter(item => item.id !== itemId);
-        setItems(updatedItems)
-    };
+	const removeItem = itemId => {
+		const updatedItems = items.filter(item => item.id !== itemId);
+		setItems(updatedItems)
+	};
 
-    const toggleItem = itemId => {
-        const updatedItems = items.map(item => 
-            item.id === itemId ? {...item, completed: !item.completed} : item
-            );
-        setItems(updatedItems);
-    }
+	const toggleItem = itemId => {
+		const updatedItems = items.map(item =>
+			item.id === itemId ? { ...item, completed: !item.completed } : item
+		);
+		setItems(updatedItems);
+	}
+
+	const editItem = (itemId, newItem) => {
+		const updatedItems = items.map(item =>
+			item.id === itemId ? { ...item, item: newItem } : item
+		);
+		setItems(updatedItems);
+	}
 
 	return (
 		<Paper
@@ -52,14 +59,15 @@ function GroceryApp(){
 					<Typography color='inherit'>Grocery List</Typography>
 				</Toolbar>
 			</AppBar>
-			<Grid container justify='center' style={{marginTop: '1rem'}}>
+			<Grid container justify='center' style={{ marginTop: '1rem' }}>
 				<Grid item xs={11} md={8} lg={4} >
-				<GroceryForm addItem={addItem} />
-				<GroceryList 
-                    items={items} 
-                    removeItem={removeItem} 
-                    toggleItem={toggleItem}
-                />
+					<GroceryForm addItem={addItem} />
+					<GroceryList
+						items={items}
+						removeItem={removeItem}
+						toggleItem={toggleItem}
+						editItem={editItem}
+					/>
 				</Grid>
 			</Grid>
 		</Paper>
