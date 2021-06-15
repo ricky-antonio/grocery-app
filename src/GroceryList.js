@@ -14,7 +14,7 @@ function GroceryList({ items, removeItem, toggleItem, editItem }) {
     return (
         <Paper>
             <List>
-                {items.map(item => (
+                {items.map((item, i) => (
                     <>
                         <Item
                             item={item.item}
@@ -25,7 +25,7 @@ function GroceryList({ items, removeItem, toggleItem, editItem }) {
                             toggleItem={toggleItem}
                             editItem={editItem}
                         />
-                        <Divider />
+                        {i < items.length -1 && <Divider />}
                     </>
                 ))}
             </List>

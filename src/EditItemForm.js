@@ -9,13 +9,16 @@ function EditItemForm({ editItem, id, item, toggleEdit }) {
             e.preventDefault();
             editItem(id, value);
             reset();
-            toggleEdit()
-        }} >
+            toggleEdit();
+        }}
+        style={{marginLeft: "1 rem", width: "50%"}}
+        >
             <TextField
                 margin='normal'
                 value={value}
                 onChange={handleChange}
                 fullWidth
+                autoFocus
             />
         </form>
     )
