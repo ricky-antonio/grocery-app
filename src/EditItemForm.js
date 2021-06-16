@@ -11,7 +11,7 @@ function EditItemForm({ editItem, id, item, toggleEdit }) {
             reset();
             toggleEdit();
         }}
-        style={{marginLeft: "1 rem", width: "50%"}}
+        style={{marginLeft: "1rem", width: "50%"}}
         >
             <TextField
                 margin='normal'

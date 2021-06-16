@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 //Components
 import GroceryList from './GroceryList';
@@ -13,13 +13,20 @@ import Grid from '@material-ui/core/Grid';
 import uuid from 'uuid/dist/v4';
 
 function GroceryApp() {
-	const initialItems = [
-		{ id: uuid(), item: 'milk', completed: false, quantity: 1 },
-		{ id: uuid(), item: 'bread', completed: true, quantity: 1 },
-		{ id: uuid(), item: 'bananas', completed: false, quantity: 6 }
-	]
+	
+	// const testItems = [
+	// 	{ id: uuid(), item: 'milk', completed: false, quantity: 1 },
+	// 	{ id: uuid(), item: 'bread', completed: true, quantity: 1 },
+	// 	{ id: uuid(), item: 'bananas', completed: false, quantity: 6 }
+	// ]
+
+	const initialItems = JSON.parse(window.localStorage.getItem('items') || "[]");
 
 	const [items, setItems] = useState(initialItems);
+
+	useEffect(() => {
+		window.localStorage.setItem("items", JSON.stringify(items));
+	}, [items]);
 
 	const addItem = newItemText => {
 		setItems([...items, { id: uuid(), item: newItemText, completed: false, quantity: 1 }]);

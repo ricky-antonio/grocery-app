@@ -11,6 +11,7 @@ import Divider from '@material-ui/core/Divider';
 
 
 function GroceryList({ items, removeItem, toggleItem, editItem }) {
+    if(items.length)
     return (
         <Paper>
             <List>
@@ -31,6 +32,7 @@ function GroceryList({ items, removeItem, toggleItem, editItem }) {
             </List>
         </Paper>
     );
+    return null;
 };
 
 export default GroceryList;
