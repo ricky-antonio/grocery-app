@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useEffect } from 'react';
+import useItemState from './hooks/useItemState';
 //Components
 import GroceryList from './GroceryList';
 import GroceryForm from './GroceryForm';
@@ -10,8 +10,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 
-import uuid from 'uuid/dist/v4';
-
 function GroceryApp() {
 	
 	// const testItems = [
@@ -21,35 +19,12 @@ function GroceryApp() {
 	// ]
 
 	const initialItems = JSON.parse(window.localStorage.getItem('items') || "[]");
-
-	const [items, setItems] = useState(initialItems);
+	const {items, addItem, removeItem, editItem, toggleItem} = useItemState(initialItems);
+	
 
 	useEffect(() => {
 		window.localStorage.setItem("items", JSON.stringify(items));
 	}, [items]);
-
-	const addItem = newItemText => {
-		setItems([...items, { id: uuid(), item: newItemText, completed: false, quantity: 1 }]);
-	};
-
-	const removeItem = itemId => {
-		const updatedItems = items.filter(item => item.id !== itemId);
-		setItems(updatedItems)
-	};
-
-	const toggleItem = itemId => {
-		const updatedItems = items.map(item =>
-			item.id === itemId ? { ...item, completed: !item.completed } : item
-		);
-		setItems(updatedItems);
-	}
-
-	const editItem = (itemId, newItem) => {
-		const updatedItems = items.map(item =>
-			item.id === itemId ? { ...item, item: newItem } : item
-		);
-		setItems(updatedItems);
-	}
 
 	return (
 		<Paper

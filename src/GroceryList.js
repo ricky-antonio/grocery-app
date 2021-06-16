@@ -18,10 +18,8 @@ function GroceryList({ items, removeItem, toggleItem, editItem }) {
                 {items.map((item, i) => (
                     <>
                         <Item
-                            item={item.item}
-                            id={item.id}
+                            {...item}
                             key={item.id}
-                            completed={item.completed}
                             removeItem={removeItem}
                             toggleItem={toggleItem}
                             editItem={editItem}
