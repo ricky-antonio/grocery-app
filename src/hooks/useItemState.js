@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import useLocalStorageState from './useLocalStorageState';
 import uuid from 'uuid/dist/v4';
 
 const useItemState = initialItems => {
-    const [items, setItems] = useState(initialItems);
+    const [items, setItems] = useLocalStorageState("items", initialItems);
 
     return {
         items,
